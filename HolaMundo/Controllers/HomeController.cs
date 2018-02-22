@@ -8,6 +8,12 @@ namespace HolaMundo.Controllers
 {
     public class HomeController : Controller
     {
+        public class Persona
+        {
+            public string Nombre { get; set; }
+            public int Edad { get; set; }
+        }
+
         public ActionResult Index()
         {
             return View();
@@ -17,14 +23,45 @@ namespace HolaMundo.Controllers
         {
             ViewBag.Message = "Your application description page.";
 
-            return View();
+            var peliculas = Services.Pelicula.List();
+
+            return View(peliculas);
         }
 
-        public ActionResult Contact()
+        public JsonResult Contact()
         {
             ViewBag.Message = "Your contact page.";
 
-            return View();
+            var persona = new Persona
+            {
+                Edad = 26,
+                Nombre = "Carlos Alberto"
+            };
+            var persona2 = new Persona
+            {
+                Edad = 26,
+                Nombre = "Carlos Alberto"
+            };
+            var persona3 = new Persona
+            {
+                Edad = 26,
+                Nombre = "Carlos Alberto"
+            };
+
+            var personas = new List<Persona>()
+            {
+                persona, persona2, persona3
+            };
+
+            //return View();
+            //regresar un content
+            //return Content("<b>Prueba Carlos</b>");
+
+            //Retornar un JSON
+            return Json(personas, JsonRequestBehavior.AllowGet);
+
+            //regresar una vista
+            //return View();
         }
     }
 }

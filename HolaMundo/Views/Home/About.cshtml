@@ -1,7 +1,34 @@
-﻿@{
+﻿@model List<HolaMundo.Models.Pelicula.PeliculaData>
+
+@{
     ViewBag.Title = "About";
 }
 <h2>@ViewBag.Title.</h2>
 <h3>@ViewBag.Message</h3>
 
 <p>Use this area to provide additional information.</p>
+
+<table class="table">
+    <thead>
+        <tr>
+        <th>Titulo</th>
+        <th>Duracion</th>
+        <th>Pais</th>
+        <th>Lanzamiento</th>
+    </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Titulo</td>
+                <td>@item.Duracion</td>
+                <td>@item.Pais</td>
+                <td>@item.Publicacion</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
